@@ -1,0 +1,40 @@
+<?php
+//  connection parameters
+$servername = "" ;//database_ip
+$database = "devops" ;
+$username = "devops" ;
+$password = "123456" ;
+
+if (isset($_POST[ 'firstname'], $_POST['lastname'],
+$_POST['email'])) {
+    session_start();
+    $firstname = $_POST[ 'firstname'] ;
+    $lastname =  $_POST['lastname'] ;
+    $email = $_POST['email'] ;
+
+    // store session data
+    $_SESSION['firstname'] = $firstname ;
+    $_SESSION['lastname'] =  $lastname ;
+    $_SESSION['email ' ] =  $email ;
+
+}
+
+// create connection
+$conn = mysqli_connect($servername, $username, $password, $database);
+
+// Check connection 
+if ($conn->connect_error){
+
+    die ("Connection failed:" . $conn->connect_error);
+} 
+
+$sql = "INSERT INTO userinfo (firstname, lastname, email) VALUES ('$firstname', '$lastname', '$email') " ;
+
+if ($conn->query($sql) === TRUE) {
+    echo "RECORD CREATED SUCCESSFULLY";
+}
+else {
+    echo "ERROR: " . $sql . "<br>" . $conn->error;
+}
+$conn->close();
+

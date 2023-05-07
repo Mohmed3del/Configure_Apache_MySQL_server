@@ -1,0 +1,57 @@
+---
+# tasks file for roles/apache
+
+- name: install packeges
+  yum:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - mysql
+    - httpd
+    - php
+    - php-mysqlnd
+    - firewalld
+
+- name: Start services
+  systemd:
+    name: "{{ item }}"
+    state: started
+    enabled: yes
+  loop:
+    - httpd
+    - firewalld
+
+- name: Set SELinux context for new port
+  seport:
+    ports: 8080
+    proto: tcp
+    setype: http_port_t
+    state: present
+
+- name: copy files to apche path
+  ansible.builtin.template:
+    src: "{{ item }}.j2"
+    dest: /var/www/html/{{ item }}
+  loop:
+    - index.html
+    - add.php
+
+- name: change apache port
+  ansible.builtin.lineinfile:
+    path: /etc/httpd/conf/httpd.conf
+    regexp: "^Listen 80$"
+    line: "Listen 8080"
+  notify: restart apache
+
+- name: Add firewall rule for new port
+  firewalld:
+    port: 8080/tcp
+    permanent: true
+    state: enabled
+  notify: restart firewall
+
+- name: Set SELinux boolean httpd_can_network_connect_db to on
+  seboolean:
+    name: httpd_can_network_connect_db
+    state: yes
+    persistent: yes

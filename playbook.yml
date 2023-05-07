@@ -1,0 +1,16 @@
+---
+- name: Install MySQL and create database
+  hosts: mysql
+  become: true
+  roles:
+    - mysql
+  # tasks:
+  #   - name: dps
+  #     ansible.builtin.debug:
+  #       msg: "{{ db_ip }}"
+- name: Install and Configure apache
+  hosts: apache
+  become: true
+  gather_facts: false
+  roles:
+    - apache

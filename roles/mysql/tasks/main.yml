@@ -1,0 +1,84 @@
+---
+# tasks file for roles/mysql
+- name: update packages
+  yum:
+    name: "*"
+    state: latest
+    update_cache: yes
+
+- name: Installing Mysql  and dependencies
+  package:
+    name: "{{item}}"
+    state: present
+    update_cache: yes
+  loop:
+    - mysql-server
+    - python3-pip
+
+  register: mysql_Install
+
+- name: Install Python packages
+  pip:
+    name: "{{ item }}"
+  loop:
+    - pymysql
+    - mysql-connector-python
+
+- name: Start MySQL service
+  systemd:
+    name: mysqld
+    state: started
+    enabled: true
+
+- name: Set MySQL root password
+  mysql_user:
+    name: root
+    password: "{{ mysql_root_password }}"
+    host: localhost
+    login_user: root
+    login_password: ""
+  when: mysql_Install.changed
+
+- name: Create database
+  mysql_db:
+    name: "{{ mysql_database }}"
+    state: present
+    login_user: root
+    login_password: "{{ mysql_root_password }}"
+
+- name: Create user and grant privileges
+  mysql_user:
+    name: "{{ mysql_user }}"
+    password: "{{ mysql_password }}"
+    priv: "{{ mysql_database }}.*:ALL"
+    host: "%"
+    state: present
+    login_user: root
+    login_password: "{{ mysql_root_password }}"
+
+# - name: Create MySQL table
+#   mysql_query:
+#     login_user: "{{ mysql_user }}"
+#     login_password: "{{ mysql_password }}"
+#     login_db: "{{ mysql_database }}"
+#     single_transaction: true
+#     query: >
+#       CREATE TABLE `userinfo` (
+#         `firstname` varchar(100) DEFAULT NULL,
+#         `lastname` varchar(40) DEFAULT NULL,
+#         `email` varchar(40) DEFAULT NULL
+#       ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+- name: copy file to mysql mysql-server
+  ansible.builtin.template:
+    src: test.sql.j2
+    dest: /tmp/test.sql
+  register: sql
+
+- name: insert sample data into database
+  mysql_db:
+    name: "{{ mysql_database }}"
+    state: import
+    target: /tmp/test.sql
+    login_user: "{{ mysql_user }}"
+    login_password: "{{ mysql_password }}"
+  when: sql.changed
