@@ -55,7 +55,7 @@ Replace `your-username` with your GitHub username.
 1. Change into the cloned repository directory:
    `cd Configure_Apache_MySQL_server`
 
-2. Update the `hosts` file with the IP address or hostname of your server.
+2. Update the `inventory` file with the IP address or hostname of your server.
 
 3. Update the `vars/main.yml` file with the desired MySQL root password and Apache port number.
 
@@ -64,6 +64,10 @@ Replace `your-username` with your GitHub username.
 ```
 ansible-playbook playbook.yml
 ```
+
+This will run the playbook using the inventory file and private key specified in your `ansible.cfg` file, without the need to specify them as command line options.
+
+Note that if your playbook uses an encrypted vault file, you can also specify the vault password file location using the `vault_password_file` option in your `ansible.cfg` file.
 
 # Configure_Apache_MySQL_server Manually
 
