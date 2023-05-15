@@ -124,11 +124,12 @@ replace `database_name` to any name you want
 
 ```
 CREATE USER 'new_user'@'%' IDENTIFIED BY 'password';
-GRANT ALL PRIVILEGES ON new_database.* TO 'new_user'@'localhost' IDENTIFIED BY 'password';
+GRANT ALL PRIVILEGES ON new_database.* TO 'new_user'@'%' IDENTIFIED BY 'password';
 flush privileges
 ```
 
 Replace new_user and password with the desired username and password, respectively.
+Replace `%` to `IP apache server ` more secure
 
 ### CREATE TABLE
 
