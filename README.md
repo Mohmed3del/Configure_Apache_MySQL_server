@@ -151,3 +151,14 @@ CREATE TABLE table_name (
 Replace `table_name` with the desired name for your table, and define the columns and their datatypes inside the parentheses.
 
 For example, to create a table named `customers` with columns for `id`, `name`, and `email`, you can run the following command:
+
+```
+CREATE TABLE customers (
+id INT NOT NULL AUTO_INCREMENT,
+name VARCHAR(50) NOT NULL,
+email VARCHAR(255) NOT NULL,
+PRIMARY KEY (id)
+);
+```
+
+This creates a table with three columns: `id`, `name`, and `email`. The `id` column is an auto-incrementing integer that serves as the primary key for the table.
