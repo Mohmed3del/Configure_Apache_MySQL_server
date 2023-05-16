@@ -126,7 +126,7 @@ $ sudo firewall-cmd --reload
 ### Manage SELinux to add new Apache port:
 
 ```bash
-sudo semanage port -a -t http_port_t -p tcp 8080
+$ sudo semanage port -a -t http_port_t -p tcp 8080
 ```
 
 This command adds port `8080` to the list of ports allowed for the `http_port_t` SELinux type.
