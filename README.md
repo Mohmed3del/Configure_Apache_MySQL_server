@@ -29,7 +29,7 @@ ansible --version
 
 You can install Ansible using pip, the Python package manager. First, you need to install pip if it's not already installed. You can do that using the following command:
 
-````
+```
 sudo apt-get update
 sudo apt-get install python3-pip
 sudo pip3 install ansible
@@ -53,6 +53,7 @@ Replace `your-username` with your GitHub username.
 ### Change directory
 
 1. Change into the cloned repository directory:
+
 ```
 cd Configure_Apache_MySQL_server
 ```
@@ -65,8 +66,8 @@ cd Configure_Apache_MySQL_server
 
 5. Run the following command to execute the playbook:
 
-```
-ansible-playbook -i inventory playbook.yml
+```sh
+$ ansible-playbook -i inventory playbook.yml
 ```
 
 # Configure_Apache_MySQL_server Manually
@@ -214,7 +215,6 @@ CREATE TABLE table_name (
 column1 datatype,
 column2 datatype,
 column3 datatype,
-...
 );
 ```
 
@@ -232,6 +232,3 @@ PRIMARY KEY (id)
 ```
 
 This creates a table with three columns: `id`, `name`, and `email`. The `id` column is an auto-incrementing integer that serves as the primary key for the table.
-
-
-````
