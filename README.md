@@ -19,21 +19,21 @@ To use these playbooks, you'll need to have Ansible installed on your local mach
 
 You can use the system package manager to install Ansible. Here are the instructions for installing Ansible on RHEL:
 
-```
-sudo yum install epel-release
-sudo yum install ansible
-ansible --version
+```bash
+$ sudo yum install epel-release
+$ sudo yum install ansible
+$ ansible --version
 ```
 
 ### Installing Ansible using pip
 
 You can install Ansible using pip, the Python package manager. First, you need to install pip if it's not already installed. You can do that using the following command:
 
-```
-sudo apt-get update
-sudo apt-get install python3-pip
-sudo pip3 install ansible
-ansible --version
+```bash
+$ sudo apt-get update
+$ sudo apt-get install python3-pip
+$ sudo pip3 install ansible
+$ ansible --version
 ```
 
 ### Frok this repo
@@ -44,8 +44,8 @@ Fork the repository by clicking the "Fork" button on the top right corner of thi
 
 Clone the forked repository to your local machine using the following command:
 
-```
-git clone https://github.com/<your-username>/Configure_Apache_MySQL_server.git
+```bash
+$ git clone https://github.com/<your-username>/Configure_Apache_MySQL_server.git
 ```
 
 Replace `your-username` with your GitHub username.
@@ -54,8 +54,8 @@ Replace `your-username` with your GitHub username.
 
 1. Change into the cloned repository directory:
 
-```
-cd Configure_Apache_MySQL_server
+```bash
+$ cd Configure_Apache_MySQL_server
 ```
 
 2. Update the `inventory` file with the IP address .
