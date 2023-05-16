@@ -19,7 +19,8 @@ To use these playbooks, you'll need to have Ansible installed on your local mach
 
 You can use the system package manager to install Ansible. Here are the instructions for installing Ansible on RHEL:
 
-````sudo yum install epel-release
+````sh
+sudo yum install epel-release
 sudo yum install ansible
 ansible --version
 ```
