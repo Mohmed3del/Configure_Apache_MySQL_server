@@ -19,21 +19,21 @@ To use these playbooks, you'll need to have Ansible installed on your local mach
 
 You can use the system package manager to install Ansible. Here are the instructions for installing Ansible on RHEL:
 
-```
-sudo yum install epel-release
+````sudo yum install epel-release
 sudo yum install ansible
-ansible --version
-```
+ansible --version```
 
 ### Installing Ansible using pip
 
 You can install Ansible using pip, the Python package manager. First, you need to install pip if it's not already installed. You can do that using the following command:
 
-```
+````
+
 sudo apt-get update
 sudo apt-get install python3-pip
 sudo pip3 install ansible
 ansible --version
+
 ```
 
 ### Frok this repo
@@ -45,7 +45,9 @@ Fork the repository by clicking the "Fork" button on the top right corner of thi
 Clone the forked repository to your local machine using the following command:
 
 ```
+
 git clone https://github.com/<your-username>/Configure_Apache_MySQL_server.git
+
 ```
 
 Replace `your-username` with your GitHub username.
@@ -64,7 +66,9 @@ Replace `your-username` with your GitHub username.
 5. Run the following command to execute the playbook:
 
 ```
-ansible-playbook  -i inventory playbook.yml
+
+ansible-playbook -i inventory playbook.yml
+
 ```
 
 # Configure_Apache_MySQL_server Manually
@@ -268,3 +272,4 @@ PRIMARY KEY (id)
 ```
 
 This creates a table with three columns: `id`, `name`, and `email`. The `id` column is an auto-incrementing integer that serves as the primary key for the table.
+```
