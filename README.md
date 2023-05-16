@@ -21,7 +21,8 @@ You can use the system package manager to install Ansible. Here are the instruct
 
 ````sudo yum install epel-release
 sudo yum install ansible
-ansible --version```
+ansible --version
+```
 
 ### Installing Ansible using pip
 
