@@ -19,7 +19,7 @@ To use these playbooks, you'll need to have Ansible installed on your local mach
 
 You can use the system package manager to install Ansible. Here are the instructions for installing Ansible on RHEL:
 
-````$sh
+```sh
 $ sudo yum install epel-release
 $ sudo yum install ansible
 $ ansible --version
@@ -275,3 +275,4 @@ PRIMARY KEY (id)
 
 This creates a table with three columns: `id`, `name`, and `email`. The `id` column is an auto-incrementing integer that serves as the primary key for the table.
 ```
+````
