@@ -66,7 +66,7 @@ cd Configure_Apache_MySQL_server
 
 5. Run the following command to execute the playbook:
 
-```sh
+```bash
 $ ansible-playbook -i inventory playbook.yml
 ```
 
@@ -78,30 +78,30 @@ $ ansible-playbook -i inventory playbook.yml
 
 #### Install Apache (httpd) on RHEL & CentOS Stream 9
 
-```
-yum install httpd -y
+```bash
+$ sudo yum install httpd -y
 ```
 
 ### Install MySQL Client , PHP-MySQLnd and Firewall
 
-```
-yum install mysql -y
-yum install php -y
-yum install php-mysqlnd -y
-yum install firewalld -y
+```bash
+$ sudo yum install mysql -y
+$ sudo yum install php -y
+$ sudo yum install php-mysqlnd -y
+$ sudo yum install firewalld -y
 ```
 
 ### Now start services
 
-```
-systemctl enable --now firewalld
-systemctl enable --now httpd
+```bash
+$ sudo systemctl enable --now firewalld
+$ sudo systemctl enable --now httpd
 ```
 
 ### TO change apache port
 
-```
-vi /etc/httpd/conf/httpd.conf
+```bash
+$ sudo vi /etc/httpd/conf/httpd.conf
 ```
 
 ### and replace port
@@ -112,21 +112,21 @@ Listen 80 -> Listen 8080
 
 or
 
-```
-sed -i 's/Listen 80/Listen 8080/g' /etc/httpd/conf/httpd.conf
+```bash
+$ sed -i 's/Listen 80/Listen 8080/g' /etc/httpd/conf/httpd.conf
 ```
 
 ### Add Apache port to firewall:
 
-```
-firewall-cmd --zone=public --add-port=8080/tcp --permanent
-firewall-cmd --reload
+```bash
+$ sudo firewall-cmd --zone=public --add-port=8080/tcp --permanent
+$ sudo firewall-cmd --reload
 ```
 
 ### Manage SELinux to add new Apache port:
 
-```
-semanage port -a -t http_port_t -p tcp 8080
+```bash
+sudo semanage port -a -t http_port_t -p tcp 8080
 ```
 
 This command adds port `8080` to the list of ports allowed for the `http_port_t` SELinux type.
@@ -137,17 +137,17 @@ SELinux boolean values are settings that control various aspects of SELinux beha
 
 Here's an example command that sets the httpd_can_network_connect boolean to on:
 
-```
-sebool -P httpd_can_network_connect on
+```bash
+$ sudo sebool -P httpd_can_network_connect on
 ```
 
 The -P option makes the change persistent, so that it will survive a system reboot.
 
 ### Restart Apache
 
-```
-sudo systemctl daemon-reload
-sudo systemctl restart httpd.service
+```bash
+$ sudo systemctl daemon-reload
+$ sudo systemctl restart httpd.service
 ```
 
 to show Apache pages on `<ip_server>:8080`
@@ -156,31 +156,31 @@ to show Apache pages on `<ip_server>:8080`
 
 ### Install MySQL-Server on RHEL & CentOS Stream 9
 
-```
-sudo yum update -y
-sudo install mysql-server
+```bash
+$ sudo yum update -y
+$ sudo install mysql-server
 ```
 
 and start mysql
 
-```
-sudo systemctl enable --now mysqld
+```bash
+$ sudo systemctl enable --now mysqld
 ```
 
 in real you don`t this beacuase mysql is running after install automatically
 
 ### Set MySQL root password
 
-```
-sudo mysql_secure_installation
+```bash
+$ sudo mysql_secure_installation
 ```
 
 create your root password
 
 and then using the root password when login in MySQl
 
-```
-sudo mysql -u root -p
+```bash
+$ sudo mysql -u root -p
 ```
 
 ### Create database
