@@ -1,6 +1,12 @@
 ---
 # tasks file for roles/apache
+- name: Get private IP address of MySQL server
+  set_fact:
+    mysql_ip: "{{ hostvars['mysql']['ansible_default_ipv4']['address'] }}"
 
+- name: Debug private IP of MySQL
+  ansible.builtin.debug:
+    msg: "{{ mysql_ip }}"
 - name: install packeges
   yum:
     name: "{{ item }}"
