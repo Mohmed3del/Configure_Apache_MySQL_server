@@ -14,7 +14,6 @@
   loop:
     - mysql-server
     - python3-pip
-
   register: mysql_Install
 
 - name: Install Python packages
