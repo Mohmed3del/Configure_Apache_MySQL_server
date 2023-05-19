@@ -4,6 +4,7 @@
   systemd:
     name: httpd
     state: restarted
+
 - name: restart firewall
   systemd:
     name: firewalld
