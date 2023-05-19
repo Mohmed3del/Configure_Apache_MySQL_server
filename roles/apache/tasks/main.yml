@@ -7,6 +7,7 @@
 - name: Debug private IP of MySQL
   ansible.builtin.debug:
     msg: "{{ mysql_ip }}"
+
 - name: install packeges
   yum:
     name: "{{ item }}"
